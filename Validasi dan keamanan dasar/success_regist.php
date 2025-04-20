@@ -2,7 +2,7 @@
 // Start session
 session_start();
 
-// Check if user was redirected properly
+// Periksa apakah pengguna diarahkan dengan benar
 if (!isset($_SESSION['registration_success']) || $_SESSION['registration_success'] !== true) {
     header("Location: index.php");
     exit();

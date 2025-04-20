@@ -3,7 +3,7 @@
 session_start();
 
 // Include database configuration
-require_once 'fungsi.php';
+require_once 'koneksi.php';
 
 // Function to sanitize input data
 function sanitizeInput($data) {
