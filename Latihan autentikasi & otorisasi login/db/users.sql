@@ -39,7 +39,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `role`) VALUES
-(1, 'abc', '$2y$10$CB/73MZQMns67YGUF9/7Pu75fwlNMOirNl9HzaPeEMCT.aSlPg3f6', 'user');
+(1, 'arbinand', '$2y$10$CB/73MZQMns67YGUF9/7Pu75fwlNMOirNl9HzaPeEMCT.aSlPg3f6', 'user');
 
 --
 -- Indexes for dumped tables
