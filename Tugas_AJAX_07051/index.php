@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Live Search Mahasiswa</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <style>
         #loading {
             display: none;
@@ -19,6 +20,23 @@
             from { opacity: 0; }
             to { opacity: 1; }
         }
+        .btn-export {
+            transition: all 0.3s;
+        }
+        .btn-export:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .search-container {
+            position: relative;
+        }
+        #loading {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+        }
     </style>
 </head>
 <body class="p-4">
@@ -27,14 +45,24 @@
         
         <div class="row mb-3">
             <div class="col-md-8">
-                <input type="text" id="search" class="form-control" placeholder="Ketik nama, NIM, atau jurusan...">
-            </div>
-            <div class="col-md-4">
-                <div id="loading" class="d-flex align-items-center">
-                    <div class="spinner-border text-primary spinner-border-sm me-2" role="status">
-                        <span class="visually-hidden">Loading...</span>
+                <div class="search-container">
+                    <input type="text" id="search" class="form-control" placeholder="Ketik nama, NIM, atau jurusan...">
+                    <div id="loading" class="d-flex align-items-center">
+                        <div class="spinner-border text-primary spinner-border-sm me-2" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <span>Mencari...</span>
                     </div>
-                    <span>Mencari...</span>
+                </div>
+            </div>
+            <div class="col-md-4 text-end">
+                <div class="d-flex justify-content-end gap-2">
+                    <button type="button" class="btn btn-success btn-export" id="exportExcelBtn">
+                        <i class="bi bi-file-earmark-excel me-1"></i> Export Excel
+                    </button>
+                    <button type="button" class="btn btn-danger btn-export" id="exportPdfBtn">
+                        <i class="bi bi-file-earmark-pdf me-1"></i> Export PDF
+                    </button>
                 </div>
             </div>
         </div>
@@ -55,8 +83,10 @@
         const searchBox = document.getElementById("search");
         const result = document.getElementById("result");
         const loading = document.getElementById("loading");
+        const exportExcelBtn = document.getElementById("exportExcelBtn");
+        const exportPdfBtn = document.getElementById("exportPdfBtn");
         
-        // tampilkan semua data saat halaman pertama kali dibuka
+        // Fungsi untuk menampilkan semua data
         function loadAllData() {
             loading.style.display = "flex";
             
@@ -139,6 +169,20 @@
             // Tunda pencarian untuk mengurangi request berlebihan
             clearTimeout(this.timer);
             this.timer = setTimeout(searchData, 300);
+        });
+        
+        // Event listener untuk tombol export Excel
+        exportExcelBtn.addEventListener("click", function() {
+            const keyword = searchBox.value.trim();
+            const url = "export_excel.php?keyword=" + encodeURIComponent(keyword);
+            window.open(url, "_blank");
+        });
+        
+        // Event listener untuk tombol export PDF
+        exportPdfBtn.addEventListener("click", function() {
+            const keyword = searchBox.value.trim();
+            const url = "export_pdf.php?keyword=" + encodeURIComponent(keyword);
+            window.open(url, "_blank");
         });
         
         // Load semua data saat halaman pertama kali dibuka
