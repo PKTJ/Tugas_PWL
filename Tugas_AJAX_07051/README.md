@@ -60,22 +60,7 @@ composer require dompdf/dompdf
 mysql -u root -p kampus < db/mahasiswa.sql
 ```
 
-### 3. Konfigurasi Database
-Edit file `koneksi.php`:
-```php
-<?php
-$host = "localhost";
-$user = "root";
-$pass = "";
-$db = "kampus";
-$koneksi = new mysqli($host, $user, $pass, $db);
-if ($koneksi->connect_error) {
-    die("Koneksi gagal: " . $koneksi->connect_error);
-}
-?>
-```
-
-### 4. Setup Web Server
+### 3. Setup Web Server
 - Place project di htdocs (XAMPP) atau www (WAMP)
 - Akses via: `http://localhost/Tugas_AJAX_07051/`
 
@@ -112,62 +97,6 @@ Tugas_AJAX_07051/
 ### 3. Format Export
 - **Excel:** Format .xlsx dengan styling header
 - **PDF:** Format A4 portrait dengan styling table
-
-## 💾 Database Schema
-
-### Tabel: mahasiswa
-```sql
-CREATE TABLE `mahasiswa` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nim` varchar(15) NOT NULL,
-  `nama` varchar(100) NOT NULL,
-  `jurusan` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-```
-
-### Sample Data
-```sql
-INSERT INTO `mahasiswa` (`id`, `nim`, `nama`, `jurusan`) VALUES
-(1, '23001', 'Budi Santoso', 'Teknik Informatika'),
-(2, '23002', 'Dewi Anggraini', 'Sistem Informasi'),
-(3, '23003', 'Adi Wijaya', 'Teknik Komputer'),
-(4, '23004', 'Putri Lestari', 'Manajemen'),
-(5, '23005', 'Rizky Hidayat', 'Sistem Informasi');
-```
-
-## 🔧 API Endpoints
-
-### 1. GET `/search.php`
-**Purpose:** Mencari data mahasiswa berdasarkan keyword
-**Parameters:**
-- `keyword` (string): Kata kunci pencarian
-
-**Response:**
-```json
-[
-  {
-    "nim": "23001",
-    "nama": "Budi Santoso",
-    "jurusan": "Teknik Informatika"
-  }
-]
-```
-
-### 2. GET `/get_all.php`
-**Purpose:** Mengambil semua data mahasiswa
-**Parameters:** Tidak ada
-**Response:** Array JSON semua data mahasiswa
-
-### 3. GET `/export_excel.php`
-**Purpose:** Export data ke Excel
-**Parameters:**
-- `keyword` (optional): Filter data
-
-### 4. GET `/export_pdf.php`
-**Purpose:** Export data ke PDF
-**Parameters:**
-- `keyword` (optional): Filter data
 
 ## 🎨 Fitur UI/UX
 
@@ -238,14 +167,6 @@ htmlspecialchars($data['nama'])
 7. **Search History**
 8. **Auto-complete** suggestions
 
-## 📊 Performance Metrics
-
-### Target Metrics:
-- Search response time: < 200ms
-- Page load time: < 1s
-- Export generation: < 5s
-- Mobile responsiveness: 100%
-
 ## 🤝 Kontributor
 
 **Developer:** ARBINANDRI  
@@ -285,15 +206,6 @@ htmlspecialchars($data['nama'])
    - Check JavaScript console
    - Verify file paths
    - Check server response
-
-## 📞 Support
-
-Untuk bantuan atau pertanyaan:
-- Email: [your-email]
-- GitHub Issues: [repository-link]
-- Documentation: README.md
-
----
 
 **Last Updated:** Juni 27, 2025  
 **Version:** 1.0.0

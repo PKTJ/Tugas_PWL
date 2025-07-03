@@ -31,7 +31,12 @@ Aplikasi web PHP yang mengintegrasikan payment gateway Midtrans dengan API RajaO
 │   └── payment_gateway.sql # Script database
 └── vendor/                # Dependencies Composer
 ```
+## 🤝 Kontributor
 
+**Developer:** ARBINANDRI  
+**NIM:** 07051  
+**Mata Kuliah:** Pemrograman Web Lanjut  
+**Universitas:** Universitas Dian Nuswantoro  
 ## Setup & Instalasi
 
 ### 1. Install Dependencies
